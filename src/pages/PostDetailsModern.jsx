@@ -1,4 +1,5 @@
 import { faker } from "@faker-js/faker";
+import DeleteIcon from "@mui/icons-material/Delete";
 import {
   Avatar,
   Box,
@@ -132,7 +133,64 @@ const PostDetailsTable = () => {
     },
     { field: "goNumber", headerName: "GO Number", width: 160 },
     { field: "goDate", headerName: "GO Date", width: 120 },
+    {
+      field: "actions",
+      headerName: "Actions",
+      width: 150,
+      sortable: false,
+      filterable: false,
+      disableColumnMenu: true,
+      renderCell: (params) => (
+        <Box sx={{ display: "flex", gap: 1 }}>
+          {/* <Button
+            variant="outlined"
+            size="small"
+            color="primary"
+            onClick={(e) => handleEdit(params.row.id)}
+            sx={{
+              minWidth: 0,
+              p: "4px 8px",
+              marginTop:'10px',
+              fontSize: "0.75rem",
+              "& .MuiButton-startIcon": { margin: 0 },
+            }}
+            startIcon={<EditIcon fontSize="small" />}
+          ></Button> */}
+          <Button
+            variant="outlined"
+            size="small"
+            color="error"
+            onClick={(e) => handleDelete(params.row.id)}
+            sx={{
+              minWidth: 0,
+              p: "4px 8px",
+              fontSize: "0.75rem",
+              marginTop: "10px",
+              "& .MuiButton-startIcon": { margin: 0 },
+            }}
+            startIcon={<DeleteIcon fontSize="small" />}
+          ></Button>
+        </Box>
+      ),
+    },
   ];
+
+  const handleEdit = (id) => {
+    // Find the row to edit
+    const rowToEdit = data.find((row) => row.id === id);
+    console.log("Editing:", rowToEdit);
+    // Add your edit logic here (open modal, navigate to edit page, etc.)
+    // Example: setEditData(rowToEdit); setOpenEditModal(true);
+  };
+
+  const handleDelete = (id) => {
+    // Confirm before deleting
+    if (window.confirm("Are you sure you want to delete this record?")) {
+      setData(data.filter((row) => row.id !== id));
+      // You might also want to update originalData if this should persist
+      // setOriginalData(originalData.filter(row => row.id !== id));
+    }
+  };
 
   return (
     <Box sx={{ p: { xs: 2, sm: 3 } }}>
@@ -212,6 +270,9 @@ const PostDetailsTable = () => {
                 color="secondary"
               >
                 Export CSV
+              </Button>
+              <Button onClick={""} variant="outlined">
+                Add Post
               </Button>
             </Box>
           </Grid>

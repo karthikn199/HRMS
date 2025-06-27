@@ -115,7 +115,7 @@ export default function Dashboard() {
         <CardContent>
           <div className="text-sm mb-2">
             <p>
-              <strong>Sri Jeelani H Mokash</strong> – Director, Directorate of
+              <strong>Sri Jeelani H Mokashi</strong> – Director, Directorate of
               Minorities
             </p>
             <p>
