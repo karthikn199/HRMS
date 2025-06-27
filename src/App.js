@@ -9,6 +9,7 @@ import CustomersPage from "./pages/customer/CustomerPage";
 import SalesDashboard from "./pages/sales/SalesDashboard";
 import PostDetailsModern from "./pages/PostDetailsModern";
 import { Dashboard } from "./pages/dashboard/Dashboard";
+import ContactDetailsTable from "./pages/ContactDetails";
 
 
 const ProtectedLayout = () => {
@@ -35,6 +36,7 @@ const App = () => {
       <Route element={<ProtectedLayout />}>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/PostDetails" element={<PostDetailsModern />} />
+            <Route path="/ContactDetails" element={<ContactDetailsTable />} />
         <Route path="/inventory" element={<InventoryPage />} />
         <Route path="/customer" element={<CustomersPage />} />
         <Route path="/sales" element={<SalesDashboard />} />

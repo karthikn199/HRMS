@@ -35,7 +35,7 @@ const Navbar = () => {
     },
     {
       name: "Contact Details",
-      href: "/PostDetails",
+      href: "/ContactDetails",
       icon: <FiShoppingBag className="mr-1" />,
     },
     // {
