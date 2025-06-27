@@ -1,12 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  FiHome,
-  FiLayers,
-  FiLogIn,
-  FiMenu,
-  FiShoppingBag,
-  FiX,
-} from "react-icons/fi";
+import { FiHome, FiLayers, FiMenu, FiShoppingBag, FiX } from "react-icons/fi";
 import { GiDiamondRing } from "react-icons/gi";
 
 const Navbar = () => {
@@ -34,7 +27,7 @@ const Navbar = () => {
     },
     {
       name: "Contact Details",
-      href: "/sales",
+      href: "/PostDetails",
       icon: <FiShoppingBag className="mr-1" />,
     },
     // {
@@ -132,7 +125,7 @@ const Navbar = () => {
                 {item.name}
               </a>
             ))}
-            <div className="pt-2 pb-4 px-3 space-y-2">
+            {/* <div className="pt-2 pb-4 px-3 space-y-2">
               <button className="w-full flex items-center justify-center text-amber-100 hover:text-white space-x-2 px-3 py-2 rounded-md hover:bg-amber-700">
                 <FiLogIn className="h-4 w-4" />
                 <span className="text-sm font-medium">Admin Login</span>
@@ -140,7 +133,7 @@ const Navbar = () => {
               <button className="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-white px-4 py-3 rounded-md text-sm font-medium hover:shadow-lg hover:shadow-amber-500/20 transition-all duration-200">
                 New Sale
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       )}

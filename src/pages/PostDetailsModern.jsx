@@ -20,7 +20,6 @@ import { useMemo, useState } from "react";
 const generateMockData = (count = 20) => {
   const districts = ["Bangalore", "Mysore", "Mangalore", "Hubli", "Belgaum"];
   const statuses = ["active", "pending", "closed"];
-
   return Array.from({ length: count }, (_, i) => ({
     id: i + 1,
     district: districts[Math.floor(Math.random() * districts.length)],
@@ -54,24 +53,22 @@ const PostDetailsTable = () => {
 
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
-    const updatedFilters = { ...filters, [name]: value };
-    setFilters(updatedFilters);
+    setFilters({ ...filters, [name]: value });
+  };
 
+  const applyFilters = () => {
     const filtered = originalData.filter((row) =>
-      Object.entries(updatedFilters).every(
+      Object.entries(filters).every(
         ([key, val]) =>
-          !val ||
-          (row[key] !== undefined &&
-            row[key] !== null &&
-            row[key].toString().toLowerCase().includes(val.toLowerCase()))
+          !val || row[key]?.toString().toLowerCase().includes(val.toLowerCase())
       )
     );
-
     setData(filtered);
   };
 
   const resetFilters = () => {
-    setFilters({ district: "", taluk: "", post: "", status: "" });
+    const reset = { district: "", taluk: "", post: "", status: "" };
+    setFilters(reset);
     setData(originalData);
   };
 
@@ -95,14 +92,7 @@ const PostDetailsTable = () => {
         </Avatar>
       ),
     },
-    {
-      field: "district",
-      headerName: "District",
-      width: 140,
-      renderCell: (params) => (
-        <Typography fontWeight={500}>{params.value}</Typography>
-      ),
-    },
+    { field: "district", headerName: "District", width: 140 },
     { field: "taluk", headerName: "Taluk", width: 160 },
     { field: "post", headerName: "Post", width: 200 },
     {
@@ -146,18 +136,14 @@ const PostDetailsTable = () => {
 
   return (
     <Box sx={{ p: { xs: 2, sm: 3 } }}>
-      <Typography
-        variant="h5"
-        gutterBottom
-        sx={{ fontWeight: 600, color: theme.palette.text.primary, mb: 3 }}
-      >
+      <Typography variant="h5" gutterBottom sx={{ fontWeight: 600, mb: 3 }}>
         Post Details
       </Typography>
 
-      {/* Filter UI */}
+      {/* Filters */}
       <Paper
         sx={{
-          p: 3,
+          p: 2,
           mb: 3,
           borderRadius: 2,
           boxShadow: theme.shadows[1],
@@ -165,54 +151,69 @@ const PostDetailsTable = () => {
         }}
       >
         <Grid container spacing={2}>
-          {Object.keys(filters).map((filterKey) => (
-            <Grid item xs={12} sm={6} md={12} key={filterKey}>
-              <FormControl fullWidth size="small">
-                <InputLabel sx={{ fontSize: 14 }}>
-                  {filterKey.charAt(0).toUpperCase() + filterKey.slice(1)}
-                </InputLabel>
-                <Select
-                  value={filters[filterKey]}
-                  name={filterKey}
-                  label={filterKey.charAt(0).toUpperCase() + filterKey.slice(1)}
-                  onChange={handleFilterChange}
-                  sx={{
-                    borderRadius: 1,
-                    "& .MuiSelect-select": {
-                      py: 1.25,
-                      fontSize: 14,
-                    },
-                  }}
-                >
-                  <MenuItem value="">All</MenuItem>
-                  {[...new Set(originalData.map((item) => item[filterKey]))]
-                    .filter((val) => val)
-                    .map((val, idx) => (
-                      <MenuItem key={idx} value={val} sx={{ fontSize: 14 }}>
-                        {val}
-                      </MenuItem>
-                    ))}
-                </Select>
-              </FormControl>
+          {Object.entries(filters).map(([key, value]) => (
+            <Grid item xs={12} sm={6} md={3} key={key}>
+              <Box sx={{ width: 200 }}>
+                {" "}
+                {/* Fixed width wrapper */}
+                <FormControl fullWidth size="small">
+                  <InputLabel>
+                    {key.charAt(0).toUpperCase() + key.slice(1)}
+                  </InputLabel>
+                  <Select
+                    name={key}
+                    value={value}
+                    label={key}
+                    onChange={handleFilterChange}
+                    sx={{ fontSize: 14 }}
+                  >
+                    <MenuItem value="">All</MenuItem>
+                    {[...new Set(originalData.map((item) => item[key]))]
+                      .filter(Boolean)
+                      .map((val, idx) => (
+                        <MenuItem key={idx} value={val}>
+                          {val}
+                        </MenuItem>
+                      ))}
+                  </Select>
+                </FormControl>
+              </Box>
             </Grid>
           ))}
-          <Grid
-            item
-            xs={12}
-            sx={{
-              display: "flex",
-              justifyContent: "flex-end",
-              mt: 1,
-              gap: 2,
-              flexWrap: "wrap",
-            }}
-          >
-            <Button onClick={resetFilters} variant="outlined" sx={{ px: 3 }}>
-              Reset
-            </Button>
-            <Button variant="contained" sx={{ px: 3 }}>
-              Apply Filters
-            </Button>
+          <Grid item xs={12}>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: { xs: "center", md: "flex-end" },
+                flexWrap: "wrap",
+                gap: 2,
+              }}
+            >
+              <Button onClick={resetFilters} variant="outlined">
+                Reset
+              </Button>
+              <Button onClick={applyFilters} variant="contained">
+                Apply Filters
+              </Button>
+              <Button
+                onClick={() => {
+                  const csv = [
+                    Object.keys(data[0] || {}).join(","),
+                    ...data.map((row) => Object.values(row).join(",")),
+                  ].join("\n");
+                  const blob = new Blob([csv], { type: "text/csv" });
+                  const url = URL.createObjectURL(blob);
+                  const a = document.createElement("a");
+                  a.href = url;
+                  a.download = "post_details.csv";
+                  a.click();
+                }}
+                variant="outlined"
+                color="secondary"
+              >
+                Export CSV
+              </Button>
+            </Box>
           </Grid>
         </Grid>
       </Paper>
@@ -229,18 +230,14 @@ const PostDetailsTable = () => {
           rows={data}
           columns={columns}
           pageSize={10}
-          rowsPerPageOptions={[10]}
+          rowsPerPageOptions={[10, 25, 50]}
           autoHeight
+          disableSelectionOnClick
           sx={{
             border: "none",
-            "& .MuiDataGrid-columnHeaders": {
-              backgroundColor: theme.palette.grey[50],
-              fontWeight: 600,
-              borderBottom: `1px solid ${theme.palette.divider}`,
-            },
+
             "& .MuiDataGrid-cell": {
               borderBottom: `1px solid ${theme.palette.divider}`,
-              py: 1.5,
               fontSize: 14,
             },
             "& .MuiDataGrid-row:hover": {
@@ -248,9 +245,14 @@ const PostDetailsTable = () => {
             },
             "& .MuiDataGrid-row:nth-of-type(even)": {
               backgroundColor: theme.palette.grey[50],
-              "&:hover": {
-                backgroundColor: alpha(theme.palette.primary.main, 0.05),
-              },
+            },
+            "& .MuiDataGrid-columnHeaders": {
+              background: `linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(245,245,245,0.9) 100%)`,
+              backdropFilter: "blur(8px)",
+              color: theme.palette.text.primary,
+              fontWeight: "bold",
+              borderBottom: `1px solid ${theme.palette.divider}`,
+              boxShadow: `0 2px 8px ${alpha(theme.palette.primary.main, 0.1)}`,
             },
           }}
         />
