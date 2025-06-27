@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   HiEye,
   HiEyeOff,
@@ -116,7 +116,7 @@ const LoginPage = () => {
 
           toast.success("Login successful!");
 
-          console.log("Test=>", user.role)
+          console.log("Test=>", user.role);
 
           // Role-based redirection
           switch (user.role) {
@@ -186,7 +186,7 @@ const LoginPage = () => {
                     : "bg-white/10 text-amber-200 hover:bg-white/20"
                 }`}
               >
-                Email Login
+                Admin Login
               </button>
               <button
                 type="button"
@@ -200,7 +200,7 @@ const LoginPage = () => {
                     : "bg-white/10 text-amber-200 hover:bg-white/20"
                 }`}
               >
-                Mobile Login
+                Staff Login
               </button>
             </div>
           </div>
@@ -339,37 +339,8 @@ const LoginPage = () => {
               className="w-72 mb-6 mx-auto"
             /> */}
             <h3 className="text-xl font-semibold mb-2 text-amber-100">
-              Complete HRMS System
+              Directorate of Minorities Karnataka
             </h3>
-            <p className="text-sm text-amber-200/80 mb-4">
-              Manage Employee, posts etc.,
-            </p>
-            <div className="grid grid-cols-2 gap-2 text-xs text-amber-100 text-left">
-              <div className="flex items-center">
-                <span className="inline-block w-2 h-2 bg-amber-400 rounded-full mr-2"></span>
-                Fearure 1
-              </div>
-              <div className="flex items-center">
-                <span className="inline-block w-2 h-2 bg-amber-400 rounded-full mr-2"></span>
-               Fearure 2
-              </div>
-              <div className="flex items-center">
-                <span className="inline-block w-2 h-2 bg-amber-400 rounded-full mr-2"></span>
-                Fearure 3
-              </div>
-              <div className="flex items-center">
-                <span className="inline-block w-2 h-2 bg-amber-400 rounded-full mr-2"></span>
-               Fearure 4
-              </div>
-              <div className="flex items-center">
-                <span className="inline-block w-2 h-2 bg-amber-400 rounded-full mr-2"></span>
-               Fearure 5
-              </div>
-              <div className="flex items-center">
-                <span className="inline-block w-2 h-2 bg-amber-400 rounded-full mr-2"></span>
-                Fearure 6
-              </div>
-            </div>
           </div>
         </div>
       </div>

@@ -15,7 +15,7 @@ export const DepartmentLeadership = () => {
         <div className="bg-gradient-to-br from-indigo-50 to-blue-50 p-5 rounded-xl border border-indigo-100">
           <div className="flex items-start space-x-4">
             <div className="bg-indigo-100 p-3 rounded-lg">
-              <svg
+              {/* <svg
                 className="w-6 h-6 text-indigo-600"
                 fill="none"
                 stroke="currentColor"
@@ -27,11 +27,11 @@ export const DepartmentLeadership = () => {
                   strokeWidth={2}
                   d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
                 />
-              </svg>
+              </svg> */}
             </div>
             <div>
               <h3 className="text-lg font-bold text-gray-800">
-                Sri Raghavendra T, K.A.S
+                Sri Raghavendra T K.A.S
               </h3>
               <p className="text-indigo-600 font-medium">Director</p>
               <p className="text-gray-600">Directorate of Minorities</p>
@@ -59,7 +59,7 @@ export const DepartmentLeadership = () => {
         <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-5 rounded-xl border border-purple-100">
           <div className="flex items-start space-x-4">
             <div className="bg-purple-100 p-3 rounded-lg">
-              <svg
+              {/* <svg
                 className="w-6 h-6 text-purple-600"
                 fill="none"
                 stroke="currentColor"
@@ -71,7 +71,7 @@ export const DepartmentLeadership = () => {
                   strokeWidth={2}
                   d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
                 />
-              </svg>
+              </svg> */}
             </div>
             <div>
               <h3 className="text-lg font-bold text-gray-800">

@@ -1,10 +1,18 @@
 import { useEffect, useState } from "react";
 import { FiHome, FiLayers, FiMenu, FiShoppingBag, FiX } from "react-icons/fi";
 import { GiDiamondRing } from "react-icons/gi";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("authToken"); // Clear token
+    sessionStorage.removeItem("userData"); // Clear session data
+    navigate("/");
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -85,15 +93,18 @@ const Navbar = () => {
           </nav>
 
           {/* Right Side Actions */}
-          {/* <div className="hidden md:flex items-center space-x-4">
-            <button className="flex items-center text-amber-100 hover:text-white space-x-1 px-3 py-2 rounded-md hover:bg-amber-800">
+          <div className="hidden md:flex items-center space-x-4">
+            {/* <button className="flex items-center text-amber-100 hover:text-white space-x-1 px-3 py-2 rounded-md hover:bg-amber-800">
               <FiLogIn className="h-4 w-4" />
               <span className="text-sm font-medium">Admin Login</span>
+            </button> */}
+            <button
+              onClick={handleLogout}
+              className="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-white px-4 py-3 rounded-md text-sm font-medium hover:shadow-lg hover:shadow-amber-500/20 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
+            >
+              Logout
             </button>
-            <button className="bg-gradient-to-r from-amber-500 to-amber-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:shadow-lg hover:shadow-amber-500/20 transition-all duration-200">
-              New Sale
-            </button>
-          </div> */}
+          </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
@@ -125,15 +136,18 @@ const Navbar = () => {
                 {item.name}
               </a>
             ))}
-            {/* <div className="pt-2 pb-4 px-3 space-y-2">
-              <button className="w-full flex items-center justify-center text-amber-100 hover:text-white space-x-2 px-3 py-2 rounded-md hover:bg-amber-700">
+            <div className="pt-2 pb-4 px-3 space-y-2">
+              {/* <button className="w-full flex items-center justify-center text-amber-100 hover:text-white space-x-2 px-3 py-2 rounded-md hover:bg-amber-700">
                 <FiLogIn className="h-4 w-4" />
                 <span className="text-sm font-medium">Admin Login</span>
+              </button> */}
+              <button
+                onClick={handleLogout}
+                className="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-white px-4 py-3 rounded-md text-sm font-medium hover:shadow-lg hover:shadow-amber-500/20 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
+              >
+                Logout
               </button>
-              <button className="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-white px-4 py-3 rounded-md text-sm font-medium hover:shadow-lg hover:shadow-amber-500/20 transition-all duration-200">
-                New Sale
-              </button>
-            </div> */}
+            </div>
           </div>
         </div>
       )}

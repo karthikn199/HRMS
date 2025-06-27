@@ -152,7 +152,7 @@ const PostDetailsTable = () => {
       >
         <Grid container spacing={2}>
           {Object.entries(filters).map(([key, value]) => (
-            <Grid item xs={12} sm={6} md={3} key={key}>
+            <Grid item xs={12} sm={6} md={2} key={key}>
               <Box sx={{ width: 200 }}>
                 {" "}
                 {/* Fixed width wrapper */}
