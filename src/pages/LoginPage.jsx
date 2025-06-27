@@ -166,13 +166,13 @@ const LoginPage = () => {
             />
           </div> */}
           <h2 className="text-3xl font-bold mb-2 text-center bg-gradient-to-r from-amber-300 via-rose-300 to-amber-300 text-transparent bg-clip-text animate-gradient-flow">
-            JewelryPro Manager
+            Directorate of Minorities
           </h2>
-          <p className="text-sm text-amber-100 text-center mb-6">
+          {/* <p className="text-sm text-amber-100 text-center mb-6">
             Premium Inventory & Sales Management System
-          </p>
+          </p> */}
 
-          <div className="flex justify-center mb-6">
+          <div className="flex justify-center mb-6 mt-4">
             <div className="inline-flex rounded-md shadow-sm">
               <button
                 type="button"
@@ -339,35 +339,35 @@ const LoginPage = () => {
               className="w-72 mb-6 mx-auto"
             /> */}
             <h3 className="text-xl font-semibold mb-2 text-amber-100">
-              Complete Jewelry Business Solution
+              Complete HRMS System
             </h3>
             <p className="text-sm text-amber-200/80 mb-4">
-              Manage inventory, sales, customers, and accounting in one place
+              Manage Employee, posts etc.,
             </p>
             <div className="grid grid-cols-2 gap-2 text-xs text-amber-100 text-left">
               <div className="flex items-center">
                 <span className="inline-block w-2 h-2 bg-amber-400 rounded-full mr-2"></span>
-                GST Compliant Invoices
+                Fearure 1
               </div>
               <div className="flex items-center">
                 <span className="inline-block w-2 h-2 bg-amber-400 rounded-full mr-2"></span>
-                Barcode/QR Support
+               Fearure 2
               </div>
               <div className="flex items-center">
                 <span className="inline-block w-2 h-2 bg-amber-400 rounded-full mr-2"></span>
-                Gold Rate Tracking
+                Fearure 3
               </div>
               <div className="flex items-center">
                 <span className="inline-block w-2 h-2 bg-amber-400 rounded-full mr-2"></span>
-                Customer Loyalty
+               Fearure 4
               </div>
               <div className="flex items-center">
                 <span className="inline-block w-2 h-2 bg-amber-400 rounded-full mr-2"></span>
-                Multi-User Roles
+               Fearure 5
               </div>
               <div className="flex items-center">
                 <span className="inline-block w-2 h-2 bg-amber-400 rounded-full mr-2"></span>
-                Comprehensive Reports
+                Fearure 6
               </div>
             </div>
           </div>
