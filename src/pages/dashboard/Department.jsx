@@ -31,7 +31,7 @@ export const DepartmentLeadership = () => {
             </div>
             <div>
               <h3 className="text-lg font-bold text-gray-800">
-                Sri Raghavendra T K.A.S
+                Sri Jeelani H Mokash
               </h3>
               <p className="text-indigo-600 font-medium">Director</p>
               <p className="text-gray-600">Directorate of Minorities</p>

@@ -115,8 +115,8 @@ export default function Dashboard() {
         <CardContent>
           <div className="text-sm mb-2">
             <p>
-              <strong>Sri Raghavendra T, K.A.S</strong> – Director, Directorate
-              of Minorities
+              <strong>Sri Jeelani H Mokash</strong> – Director, Directorate of
+              Minorities
             </p>
             <p>
               <strong>Smt. Kavitha E</strong> – Assistant Director, Admin,
